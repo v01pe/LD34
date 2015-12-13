@@ -13,6 +13,7 @@ GameObject:
   - 50: {fileID: 5068798}
   - 233: {fileID: 23371962}
   - 114: {fileID: 11483378}
+  - 114: {fileID: 11468246}
   m_Layer: 0
   m_Name: Branch
   m_TagString: Untagged
@@ -81,6 +82,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &11468246
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 170478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98e98c4ca00d44b07a957561af9f1023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  branch: {fileID: 11483378}
+  numLines: 5
+  mat: {fileID: 2100000, guid: d8170af201a84404b9754e0ee9695491, type: 2}
 --- !u!114 &11483378
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -92,8 +107,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4267df6cb99542f6b0912e3bb05750b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prototype: {fileID: 170478}
+  parent: {fileID: 0}
   startGrowth: 0
+  spreadFactor: .899999976
+  numBranches: 2
 --- !u!233 &23371962
 HingeJoint2D:
   m_ObjectHideFlags: 1
@@ -129,6 +146,18 @@ Prefab:
       propertyPath: prototype
       value: 
       objectReference: {fileID: 170478}
+    - target: {fileID: 0}
+      propertyPath: branch
+      value: 
+      objectReference: {fileID: 11483378}
+    - target: {fileID: 0}
+      propertyPath: mat
+      value: 
+      objectReference: {fileID: 2100000, guid: d8170af201a84404b9754e0ee9695491, type: 2}
+    - target: {fileID: 0}
+      propertyPath: numLines
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 170478}

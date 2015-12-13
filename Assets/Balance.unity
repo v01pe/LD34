@@ -140,6 +140,10 @@ Prefab:
       propertyPath: startGrowth
       value: .5
       objectReference: {fileID: 0}
+    - target: {fileID: 11483378, guid: 6e33e9965c1ad4104be64dce96bd84f1, type: 2}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 1307892734}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6e33e9965c1ad4104be64dce96bd84f1, type: 2}
   m_IsPrefabParent: 0
@@ -161,6 +165,7 @@ GameObject:
   - 92: {fileID: 1197394312}
   - 124: {fileID: 1197394311}
   - 81: {fileID: 1197394310}
+  - 114: {fileID: 1197394315}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -236,6 +241,19 @@ Transform:
   - {fileID: 2072055249}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &1197394315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1197394309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ccd7a0f19a414397981faa29c6945d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toFollow: {fileID: 1307892732}
+  strength: 4
 --- !u!1 &1307892728
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,6 +266,7 @@ GameObject:
   - 23: {fileID: 1307892730}
   - 114: {fileID: 1307892729}
   - 50: {fileID: 1307892733}
+  - 114: {fileID: 1307892734}
   m_Layer: 0
   m_Name: Root
   m_TagString: Untagged
@@ -266,9 +285,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb1bbb2878a42455d8e10b741343eafa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 100
+  strength: 150
   trunk: {fileID: 904651374}
-  growRate: .00100000005
+  growRate: .0500000007
 --- !u!23 &1307892730
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -323,7 +342,7 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1307892728}
   m_Mass: 10
-  m_LinearDrag: 0
+  m_LinearDrag: .150000006
   m_AngularDrag: .0500000007
   m_GravityScale: 1
   m_IsKinematic: 0
@@ -331,6 +350,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 2
+--- !u!114 &1307892734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1307892728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4267df6cb99542f6b0912e3bb05750b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 0}
+  startGrowth: 1
+  spreadFactor: 1
+  numBranches: 1
 --- !u!1 &2072055248
 GameObject:
   m_ObjectHideFlags: 0

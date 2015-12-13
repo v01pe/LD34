@@ -1,20 +1,26 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent (typeof(Rigidbody2D))]
 public class Branch : MonoBehaviour
 {
+	public Branch parent;
 	[Range (0f, 1f)]
 	public float startGrowth = 0f;
+	[Range (0f, 1f)]
+	public float spreadFactor = 0.9f;
+	public int numBranches = 2;
 
 	private Rigidbody2D rigidBody;
 	private float initialMass;
+	
+	private List<Branch> branches;
 
 	private float growth;
-	private float Growth
+	public float Growth
 	{
 		get { return growth; }
-		set
+		private set
 		{
 			growth = Mathf.Clamp01(value);
 			rigidBody.mass = growth * initialMass;
@@ -27,10 +33,14 @@ public class Branch : MonoBehaviour
 		rigidBody = GetComponent<Rigidbody2D>();
 		initialMass = rigidBody.mass;
 		Growth = startGrowth;
+
+		branches = new List<Branch>();
 	}
 
 	public void Grow(float amount)
 	{
-		Growth += amount;
+		float currentGrowth = Growth + amount;
+//		float overTheTop = Mathf.Min(0f, currentGrowth - spreadFactor);
+		Growth = currentGrowth;
 	}
 }
