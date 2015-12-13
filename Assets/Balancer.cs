@@ -5,6 +5,8 @@ using System.Collections;
 public class Balancer : MonoBehaviour
 {
 	public float strength = 100f;
+	public Branch trunk;
+	public float growRate = 0.01f;
 
 	private Rigidbody2D rigidBody;
 
@@ -25,5 +27,10 @@ public class Balancer : MonoBehaviour
 		force *= strength * Time.deltaTime;
 
 		rigidBody.AddForce(force, ForceMode2D.Impulse);
+
+		if (trunk != null)
+		{
+			trunk.Grow(growRate * Mathf.Abs(force.x));
+		}
 	}
 }
