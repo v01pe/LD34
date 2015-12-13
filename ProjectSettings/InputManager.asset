@@ -6,17 +6,17 @@ InputManager:
   serializedVersion: 2
   m_Axes:
   - serializedVersion: 3
-    m_Name: Horizontal
+    m_Name: Balance
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: left
     positiveButton: right
     altNegativeButton: a
     altPositiveButton: d
-    gravity: 3
+    gravity: 5
     dead: .00100000005
-    sensitivity: 3
-    snap: 0
+    sensitivity: .5
+    snap: 1
     invert: 0
     type: 0
     axis: 0
