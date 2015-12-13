@@ -9,8 +9,9 @@ public class Branch : MonoBehaviour
 	public float startGrowth = 0f;
 	[Range (0f, 1f)]
 	public float spreadFactor = 0.9f;
-	public int numBranches = 2;
-
+	public int numBranches = -1;
+	public Vector2 angleRange = new Vector2(10f, 70f);
+	
 	private Rigidbody2D rigidBody;
 	private float initialMass;
 	
@@ -28,7 +29,7 @@ public class Branch : MonoBehaviour
 	}
 
 	// Use this for initialization
-	void Start ()
+	void Awake ()
 	{
 		rigidBody = GetComponent<Rigidbody2D>();
 		initialMass = rigidBody.mass;
@@ -39,8 +40,50 @@ public class Branch : MonoBehaviour
 
 	public void Grow(float amount)
 	{
+		float passOn = 0f;
+		if (Growth > spreadFactor)
+		{
+			passOn += amount / 3f;
+			amount -= passOn;
+		}
+
 		float currentGrowth = Growth + amount;
-//		float overTheTop = Mathf.Min(0f, currentGrowth - spreadFactor);
+		passOn += Mathf.Min(0f, currentGrowth - 1f);
+
 		Growth = currentGrowth;
+
+		Spread(passOn);
 	}
+
+	private void Spread(float amount)
+	{
+		if (amount > 0f)
+		{
+			if (branches.Count == 0)
+			{
+				int branchCount = (numBranches < 0) ? Random.Range(1, 4) : numBranches;
+				for (int i = 0; i < branchCount; i++)
+				{
+					GameObject branchObject = GameObject.Instantiate(Resources.Load<GameObject>("Branch"));
+
+					float scale = Random.Range(0.6f, 0.8f);
+					branchObject.transform.localScale = transform.localScale * scale;
+					float angle = Random.Range(angleRange[0], angleRange[1]) * ((i%2 == 0) ? -1 : 1);
+					branchObject.transform.Rotate(0, 0, transform.rotation.eulerAngles.z + angle);
+
+					Branch newBranch = branchObject.GetComponent<Branch>();
+					branches.Add(newBranch);
+
+					HingeJoint2D joint = branchObject.GetComponent<HingeJoint2D>();
+					joint.connectedBody = rigidBody;
+				}
+			}
+
+			foreach (Branch childBranch in branches)
+			{
+				childBranch.Grow(amount);
+			}
+		}
+	}
+
 }

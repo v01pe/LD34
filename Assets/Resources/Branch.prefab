@@ -110,7 +110,7 @@ MonoBehaviour:
   parent: {fileID: 0}
   startGrowth: 0
   spreadFactor: .899999976
-  numBranches: 2
+  angleRange: {x: 10, y: 70}
 --- !u!233 &23371962
 HingeJoint2D:
   m_ObjectHideFlags: 1
@@ -126,8 +126,8 @@ HingeJoint2D:
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
-    m_MaximumMotorForce: 10000
-  m_UseLimits: 0
+    m_MaximumMotorForce: 1000
+  m_UseLimits: 1
   m_AngleLimits:
     m_LowerAngle: 0
     m_UpperAngle: 359
@@ -169,6 +169,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_ConnectedAnchor.y
       value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_UseLimits
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Motor.m_MaximumMotorForce
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

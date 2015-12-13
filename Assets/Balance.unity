@@ -144,6 +144,18 @@ Prefab:
       propertyPath: m_ConnectedAnchor.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11483378, guid: 6e33e9965c1ad4104be64dce96bd84f1, type: 2}
+      propertyPath: numBranches
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5068798, guid: 6e33e9965c1ad4104be64dce96bd84f1, type: 2}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 23371962, guid: 6e33e9965c1ad4104be64dce96bd84f1, type: 2}
+      propertyPath: m_UseLimits
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6e33e9965c1ad4104be64dce96bd84f1, type: 2}
   m_IsPrefabParent: 0
@@ -348,7 +360,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 2
+  m_Constraints: 6
 --- !u!114 &1307892734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,6 +375,8 @@ MonoBehaviour:
   parent: {fileID: 0}
   startGrowth: 1
   spreadFactor: 1
+  numBranches: -1
+  angleRange: {x: 10, y: 70}
 --- !u!1 &2072055248
 GameObject:
   m_ObjectHideFlags: 0

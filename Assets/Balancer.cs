@@ -30,7 +30,7 @@ public class Balancer : MonoBehaviour
 
 		if (trunk != null)
 		{
-			trunk.Grow(growRate * Mathf.Abs(balance) * Time.deltaTime);
+			trunk.Grow(growRate * Mathf.Abs(balance) * Time.deltaTime * 30f);
 		}
 	}
 }
