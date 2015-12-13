@@ -9,6 +9,7 @@ public class Follow : MonoBehaviour
 	private float offsetFactor;
 	private float distance;
 
+	private GameObject[] keepInside;
 	// Use this for initialization
 	void Start ()
 	{
@@ -26,5 +27,15 @@ public class Follow : MonoBehaviour
 
 		Vector3 position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * strength);
 		transform.position = position;
+
+		keepInside = GameObject.FindGameObjectsWithTag("Branch");
+		Bounds bounds = new Bounds();
+		foreach (GameObject branch in keepInside)
+		{
+			Renderer rndr = branch.GetComponent<Renderer>();
+			bounds.Encapsulate(rndr.bounds);
+		}
+		float height = bounds.center.y + bounds.extents.y + 4f;
+		Camera.main.orthographicSize = Mathf.Max(5f, height/2);
 	}
 }
