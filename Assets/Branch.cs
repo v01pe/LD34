@@ -86,7 +86,47 @@ public class Branch : MonoBehaviour
 
 			foreach (Branch childBranch in branches)
 			{
-				childBranch.Grow(amount);
+				if (childBranch != null)
+					childBranch.Grow(amount);
+			}
+		}
+	}
+
+	public float GetCummulativeGrowth()
+	{
+		float cummulativeGrowth = (Growth - startGrowth) * transform.localScale.x;
+		foreach (Branch branch in branches)
+		{
+			if (branch != null)
+				cummulativeGrowth += branch.GetCummulativeGrowth();
+		}
+
+		return cummulativeGrowth;
+	}
+
+	public void Break()
+	{
+		Joint2D joint = GetComponent<Joint2D>();
+		Destroy(joint);
+		
+		Rigidbody2D body = GetComponent<Rigidbody2D>();
+		Vector2 velocity = body.velocity;
+		velocity.y *= -1;
+		body.velocity = velocity;
+		body.angularVelocity = Random.Range(500f, 1000f) * Mathf.Sign(Random.value-0.5f);
+		
+		parent.Break(this);
+		parent = null;
+	}
+
+	public void Break(Branch child)
+	{
+		for (int i = 0; i < branches.Count; i++)
+		{
+			if (branches[i] == child)
+			{
+				branches[i] = null;
+				break;
 			}
 		}
 	}
