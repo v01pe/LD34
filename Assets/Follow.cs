@@ -39,6 +39,6 @@ public class Follow : MonoBehaviour
 				bounds.Encapsulate(collider.bounds);
 		}
 		float size = Mathf.Max(bounds.center.y + bounds.extents.y + 4f, (bounds.extents.x + 4f) / Camera.main.aspect );
-		Camera.main.orthographicSize = Mathf.Max(5f, size/2);
+		Camera.main.orthographicSize = Mathf.Clamp(size/2, 5f, 15f);
 	}
 }
