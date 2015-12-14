@@ -3,11 +3,21 @@ using System.Collections;
 
 public class Floor : MonoBehaviour
 {
+	public Score score;
+
+	private bool notified = false;
+
 	void OnCollisionEnter2D(Collision2D other)
 	{
 		if (other.gameObject.tag == "Branch")
 		{
 			Expode(other);
+
+			if (!notified)
+			{
+				score.Invoke("Done", 1.5f);
+				notified = true;
+			}
 		}
 	}
 	

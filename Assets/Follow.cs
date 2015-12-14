@@ -9,7 +9,6 @@ public class Follow : MonoBehaviour
 	private float offsetFactor;
 	private float distance;
 
-	private GameObject[] keepInside;
 	// Use this for initialization
 	void Start ()
 	{
@@ -28,10 +27,13 @@ public class Follow : MonoBehaviour
 		Vector3 position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * strength);
 		transform.position = position;
 
-		keepInside = GameObject.FindGameObjectsWithTag("Branch");
+		Branch[] keepInside = FindObjectsOfType<Branch>();
 		Bounds bounds = new Bounds();
-		foreach (GameObject branch in keepInside)
+		foreach (Branch branch in keepInside)
 		{
+			if (branch.parent == null)
+				continue;
+
 			Collider2D collider = branch.GetComponent<Collider2D>();
 			if (collider != null)
 				bounds.Encapsulate(collider.bounds);
