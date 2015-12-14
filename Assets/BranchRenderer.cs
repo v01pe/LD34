@@ -18,21 +18,35 @@ public class BranchRenderer : MonoBehaviour
 
 	void OnRenderObject()
 	{
-		float growth = branch.Growth - 0.5f;
-		float topWidth = branch.Growth * 0.5f / 2f;
+		BranchRenderer parent = (branch.parent == null) ? null : branch.parent.GetComponent<BranchRenderer>();
 
-		Vector3 baseLeft = new Vector3(-0.5f, -0.5f ,0f);
-		Vector3 baseRight = new Vector3(0.5f, -0.5f ,0f);
-		Vector3 topLeft = new Vector3(-topWidth, growth ,0f);
-		Vector3 topRight = new Vector3(topWidth, growth ,0f);
+		float growth = branch.Growth - 0.5f;
+		float topWidth = branch.Growth * 0.5f / 2f * transform.localScale.x;
+
+		Vector3 baseLeft, baseRight;
+		if (parent == null)
+		{
+			baseLeft = new Vector3(-0.5f, -0.5f, 0f);
+			baseRight = new Vector3(0.5f, -0.5f, 0f);
+		}
+		else
+		{
+			Vector3[] parentTop = parent.GetTopCorners();
+			baseLeft = transform.InverseTransformPoint(parentTop[0]);
+			baseRight = transform.InverseTransformPoint(parentTop[1]);
+		}
+		Vector3 topLeft = new Vector3(-topWidth, growth, 0f);
+		Vector3 topRight = new Vector3(topWidth, growth, 0f);
 
 		GL.PushMatrix();
 		mat.SetPass(0);
 		GL.MultMatrix(transform.localToWorldMatrix);
 
-		for (int i = 0; i < numLines; i++)
+		int lineCount = Mathf.Max(1, numLines - (branch.Depth/2)*2);
+
+		for (int i = 0; i < lineCount; i++)
 		{
-			float t = (float)i/((float)numLines-1f);
+			float t = (float)i/((float)lineCount-1f);
 			Vector3 basePos = Vector3.Lerp(baseLeft, baseRight, t);
 			Vector3 topPos = Vector3.Lerp(topLeft, topRight, t);
 
@@ -44,5 +58,23 @@ public class BranchRenderer : MonoBehaviour
 		}
 
 		GL.PopMatrix();
+	}
+
+	public Vector3[] GetBaseCorners()
+	{
+		Vector3 baseLeft = transform.TransformPoint(new Vector3(-0.5f, -0.5f, 0f));
+		Vector3 baseRight = transform.TransformPoint(new Vector3(0.5f, -0.5f, 0f));
+		Vector3[] baseCorners = { baseLeft, baseRight };
+		return baseCorners;
+	}
+
+	public Vector3[] GetTopCorners()
+	{
+		float growth = branch.Growth - 0.5f;
+		float topWidth = branch.Growth * 0.5f / 2f * transform.localScale.x;
+		Vector3 topLeft = transform.TransformPoint(new Vector3(-topWidth, growth, 0f));
+		Vector3 topRight = transform.TransformPoint(new Vector3(topWidth, growth, 0f));
+		Vector3[] topCorners = { topLeft, topRight };
+		return topCorners;
 	}
 }
