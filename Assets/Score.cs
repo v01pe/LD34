@@ -12,7 +12,7 @@ public class Score : MonoBehaviour
 
 	private int maxScore;
 	private static int bestScore;
-	private static bool first;
+	private static bool first = true;
 	private float score
 	{
 		get { return maxScore; }
