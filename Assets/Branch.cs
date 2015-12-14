@@ -11,7 +11,7 @@ public class Branch : MonoBehaviour
 	public float spreadFactor = 0.9f;
 	public int numBranches = -1;
 	public Vector2 angleRange = new Vector2(10f, 70f);
-	
+
 	private Rigidbody2D rigidBody;
 	private float initialMass;
 	
@@ -27,6 +27,9 @@ public class Branch : MonoBehaviour
 			rigidBody.mass = growth * initialMass;
 		}
 	}
+
+	private int depth = 0;
+	public int Depth { get { return depth; } }
 
 	// Use this for initialization
 	void Awake ()
@@ -72,6 +75,8 @@ public class Branch : MonoBehaviour
 					branchObject.transform.Rotate(0, 0, transform.rotation.eulerAngles.z + angle);
 
 					Branch newBranch = branchObject.GetComponent<Branch>();
+					newBranch.parent = this;
+					newBranch.depth = depth + 1;
 					branches.Add(newBranch);
 
 					HingeJoint2D joint = branchObject.GetComponent<HingeJoint2D>();
@@ -85,5 +90,4 @@ public class Branch : MonoBehaviour
 			}
 		}
 	}
-
 }

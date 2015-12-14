@@ -32,10 +32,11 @@ public class Follow : MonoBehaviour
 		Bounds bounds = new Bounds();
 		foreach (GameObject branch in keepInside)
 		{
-			Renderer rndr = branch.GetComponent<Renderer>();
-			bounds.Encapsulate(rndr.bounds);
+			Collider2D collider = branch.GetComponent<Collider2D>();
+			if (collider != null)
+				bounds.Encapsulate(collider.bounds);
 		}
-		float height = bounds.center.y + bounds.extents.y + 4f;
-		Camera.main.orthographicSize = Mathf.Max(5f, height/2);
+		float size = Mathf.Max(bounds.center.y + bounds.extents.y + 4f, (bounds.extents.x + 4f) / Camera.main.aspect );
+		Camera.main.orthographicSize = Mathf.Max(5f, size/2);
 	}
 }

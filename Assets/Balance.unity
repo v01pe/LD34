@@ -265,7 +265,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toFollow: {fileID: 1307892732}
   strength: 4
-  height: 0
 --- !u!1 &1307892728
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,7 +298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strength: 150
   trunk: {fileID: 904651374}
-  growRate: .0500000007
+  growRate: .5
 --- !u!23 &1307892730
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -389,9 +388,11 @@ GameObject:
   - 23: {fileID: 2072055250}
   - 114: {fileID: 2072055253}
   - 61: {fileID: 2072055251}
+  - 114: {fileID: 2072055254}
+  - 50: {fileID: 2072055255}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -466,3 +467,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1307892732}
+--- !u!114 &2072055254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2072055248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06c6b1789d834a9584da9ac6aa556dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &2072055255
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2072055248}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
