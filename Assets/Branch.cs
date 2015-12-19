@@ -71,6 +71,8 @@ public class Branch : MonoBehaviour
 
 					float scale = Random.Range(0.6f, 0.8f);
 					branchObject.transform.localScale = transform.localScale * scale;
+					Vector3 position = transform.TransformPoint(new Vector3(0f, 0.5f + 0.5f*scale, 0f));
+					branchObject.transform.position = position;
 					float angle = Random.Range(angleRange[0], angleRange[1]) * ((i%2 == 0) ? -1 : 1);
 					branchObject.transform.Rotate(0, 0, transform.rotation.eulerAngles.z + angle);
 
