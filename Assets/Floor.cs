@@ -4,6 +4,7 @@ using System.Collections;
 public class Floor : MonoBehaviour
 {
 	public Score score;
+	public GameObject baseBranch;
 
 	private bool notified = false;
 
@@ -13,7 +14,7 @@ public class Floor : MonoBehaviour
 		{
 			Expode(other);
 
-			if (!notified)
+			if (!notified && other.gameObject == baseBranch)
 			{
 				score.Invoke("Done", 1.5f);
 				notified = true;

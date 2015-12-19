@@ -239,6 +239,10 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 904651373}
   m_Script: {fileID: 11500000, guid: c4267df6cb99542f6b0912e3bb05750b, type: 3}
+--- !u!1 &904651375 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 170478, guid: 6e33e9965c1ad4104be64dce96bd84f1, type: 2}
+  m_PrefabInternal: {fileID: 904651373}
 --- !u!1 &978697718
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,6 +803,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: {fileID: 1655461977}
+  baseBranch: {fileID: 904651375}
 --- !u!50 &2072055255
 Rigidbody2D:
   serializedVersion: 2
